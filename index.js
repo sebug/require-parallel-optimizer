@@ -10,10 +10,9 @@ function prepare(sourceDirectory, targetDirectory) {
     return fs.copy(sourceDirectory, targetDirectory);
 }
 
-function optimize(sourceDirectory, targetDirectory) {
-    fs.copy(sourceDirectory, targetDirectory).then(function () {
-	console.log('copied over');
-    });
+async function optimize(sourceDirectory, targetDirectory) {
+    await fs.copy(sourceDirectory, targetDirectory);
+    console.log('copied over');
 }
 
 optimize(process.argv[2], process.argv[3]);
