@@ -65,6 +65,27 @@ function getTotalModules(objectExpression) {
     return modulesProperty.value.elements.length;
 }
 
+function adaptToModuleSlice(objectExpression, start, end) {
+    let modulesProperty =
+	objectExpression.properties.filter(p => p.key.name === 'modules')[0];
+
+    if (!modulesProperty) {
+	throw new Error('Could not find top level modules property');
+    }
+    if (!modulesProperty.value) {
+	throw new Error('Could not find modules property value');
+    }
+    if (modulesProperty.value.type !== 'ArrayExpression') {
+	throw new Error('Modules property value is not ArrayExpression but ' + modulesProperty.value.type);
+    }
+    let newElements = [];
+    for (let i = start; i < end; i += 1) {
+	newElements.push(modulesProperty.value.elements[i]);
+    }
+    modulesProperty.value.elements = newElements;
+    return objectExpression;
+}
+
 module.exports = async function adaptRequireConfig(requireConfigPath, numberOfSlices) {
     let result = [];
     let totalModules;
@@ -90,9 +111,9 @@ module.exports = async function adaptRequireConfig(requireConfigPath, numberOfSl
 	    end = start + sliceLength;
 	}
 
-	console.log("[" + start + ", " + end + ")");
-
 	ensureSkipDirOptimize(topLevelConfigObject);
+
+	adaptToModuleSlice(topLevelConfigObject, start, end);
 
 	const enriched = es.attachComments(tree, tree.comments, tree.tokens);
 
