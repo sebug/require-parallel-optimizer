@@ -6,5 +6,8 @@
   "repository": "https://github.com/sebug/require-parallel-optimizer.git",
   "author": "Sebastian Gfeller",
   "license": "Apache-2.0",
-  "private": false
+  "private": false,
+  "dependencies": {
+    "fs-extra": "^6.0.1"
+  }
 }
