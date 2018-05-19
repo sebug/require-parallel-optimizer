@@ -49,19 +49,24 @@ function ensureSkipDirOptimize(objectExpression) {
     }
 }
 
-module.exports = async function adaptRequireConfig(requireConfigPath) {
-    console.log('from module');
-    const originalContent = await fs.readFile(requireConfigPath, 'utf8');
-    const tree = esprima.parseScript(originalContent, { range: true, comment: true, tokens: true });
+module.exports = async function adaptRequireConfig(requireConfigPath, numberOfSlices) {
+    let result = [];
 
-    let topLevelConfigObject = getTopLevelConfigObject(tree);
+    for (let i = 0; i < numberOfSlices; i += 1) {
+	const originalContent = await fs.readFile(requireConfigPath, 'utf8');
+	const tree = esprima.parseScript(originalContent, { range: true, comment: true, tokens: true });
 
-    ensureSkipDirOptimize(topLevelConfigObject);
+	let topLevelConfigObject = getTopLevelConfigObject(tree);
 
-    const enriched = es.attachComments(tree, tree.comments, tree.tokens);
+	ensureSkipDirOptimize(topLevelConfigObject);
 
-    let transformedContent = es.generate(enriched, { comment: true });
+	const enriched = es.attachComments(tree, tree.comments, tree.tokens);
 
-    return transformedContent;
+	let transformedContent = es.generate(enriched, { comment: true });
+
+	result.push(transformedContent);
+    }
+
+    return result;
 };
 
