@@ -133,7 +133,7 @@ module.exports = async function adaptRequireConfig(requireConfigPath, numberOfSl
 	}
 
 	if (i === numberOfSlices - 1) {
-	    end = totalModules + 1;
+	    end = totalModules;
 	} else {
 	    end = start + sliceLength;
 	}
