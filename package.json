@@ -8,6 +8,8 @@
   "license": "Apache-2.0",
   "private": false,
   "dependencies": {
+    "escodegen": "^1.9.1",
+    "esprima": "^4.0.0",
     "fs-extra": "^6.0.1",
     "requirejs": "^2.3.5"
   }

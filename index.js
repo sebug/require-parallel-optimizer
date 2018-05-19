@@ -6,14 +6,7 @@ if (process.argv.length < 5) {
 
 const fs = require('fs-extra');
 const path = require('path');
-
-function prepare(sourceDirectory, targetDirectory) {
-    return fs.copy(sourceDirectory, targetDirectory);
-}
-
-async function adaptRequireConfig(requireConfigPath) {
-    console.log(requireConfigPath);
-}
+const adaptRequireConfig = require('./adapt_require_config');
 
 async function optimize(sourceDirectory, targetDirectory, requireConfigName) {
     let rjsPath = path.join(path.dirname(process.argv[1]), 'node_modules', '.bin', 'r.js');
