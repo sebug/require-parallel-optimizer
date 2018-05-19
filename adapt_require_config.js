@@ -49,14 +49,48 @@ function ensureSkipDirOptimize(objectExpression) {
     }
 }
 
+function getTotalModules(objectExpression) {
+    let modulesProperty =
+	objectExpression.properties.filter(p => p.key.name === 'modules')[0];
+
+    if (!modulesProperty) {
+	throw new Error('Could not find top level modules property');
+    }
+    if (!modulesProperty.value) {
+	throw new Error('Could not find modules property value');
+    }
+    if (modulesProperty.value.type !== 'ArrayExpression') {
+	throw new Error('Modules property value is not ArrayExpression but ' + modulesProperty.value.type);
+    }
+    return modulesProperty.value.elements.length;
+}
+
 module.exports = async function adaptRequireConfig(requireConfigPath, numberOfSlices) {
     let result = [];
+    let totalModules;
+    let sliceLength;
+    let start;
+    let end;
 
     for (let i = 0; i < numberOfSlices; i += 1) {
 	const originalContent = await fs.readFile(requireConfigPath, 'utf8');
 	const tree = esprima.parseScript(originalContent, { range: true, comment: true, tokens: true });
 
 	let topLevelConfigObject = getTopLevelConfigObject(tree);
+
+	if (!totalModules) {
+	    totalModules = getTotalModules(topLevelConfigObject);
+	    sliceLength = Math.floor(totalModules / numberOfSlices);
+	    start = 0;
+	}
+
+	if (i === numberOfSlices - 1) {
+	    end = totalModules + 1;
+	} else {
+	    end = start + sliceLength;
+	}
+
+	console.log("[" + start + ", " + end + ")");
 
 	ensureSkipDirOptimize(topLevelConfigObject);
 
@@ -65,6 +99,8 @@ module.exports = async function adaptRequireConfig(requireConfigPath, numberOfSl
 	let transformedContent = es.generate(enriched, { comment: true });
 
 	result.push(transformedContent);
+
+	start += sliceLength;
     }
 
     return result;
