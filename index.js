@@ -13,7 +13,10 @@ async function optimize(sourceDirectory, targetDirectory, requireConfigName) {
     const mainInstance = path.join(targetDirectory, 'main');
     await fs.copy(sourceDirectory, mainInstance);
 
-    await adaptRequireConfig(path.join(mainInstance, requireConfigName));
+    let adaptedRequireConfigContent = await adaptRequireConfig(path.join(mainInstance, requireConfigName));
+
+    const adaptedPath = path.join(mainInstance, 'adapted_' + requireConfigName);
+    await fs.writeFile(adaptedPath, adaptedRequireConfigContent, 'utf8');
 }
 
 optimize(process.argv[2], process.argv[3], process.argv[4]);
