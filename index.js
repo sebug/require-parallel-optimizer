@@ -11,10 +11,16 @@ function prepare(sourceDirectory, targetDirectory) {
     return fs.copy(sourceDirectory, targetDirectory);
 }
 
+async function adaptRequireConfig(requireConfigPath) {
+    console.log(requireConfigPath);
+}
+
 async function optimize(sourceDirectory, targetDirectory, requireConfigName) {
+    let rjsPath = path.join(path.dirname(process.argv[1]), 'node_modules', '.bin', 'r.js');
     const mainInstance = path.join(targetDirectory, 'main');
     await fs.copy(sourceDirectory, mainInstance);
-    console.log('copied over');
+
+    await adaptRequireConfig(path.join(mainInstance, requireConfigName));
 }
 
 optimize(process.argv[2], process.argv[3], process.argv[4]);
