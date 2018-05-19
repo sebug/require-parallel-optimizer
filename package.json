@@ -1,0 +1,10 @@
+{
+  "name": "require-parallel-optimizer",
+  "version": "0.0.1",
+  "description": "Optimizes a lot of RequireJS bundles in parallel.",
+  "main": "index.js",
+  "repository": "https://github.com/sebug/require-parallel-optimizer.git",
+  "author": "Sebastian Gfeller",
+  "license": "Apache-2.0",
+  "private": false
+}
