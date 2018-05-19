@@ -49,6 +49,33 @@ function ensureSkipDirOptimize(objectExpression) {
     }
 }
 
+function adaptDir(objectExpression, sliceNumber) {
+    let dirProperty =
+	objectExpression.properties.filter(p => p.key.name === 'dir')[0];
+    if (!dirProperty) {
+	dirProperty = {
+	    type: 'Property',
+	    key: {
+		type: 'Identifier',
+		name: 'dir'
+	    },
+	    computed: false,
+	    value: {
+		type: 'Literal',
+		value: 'build' + sliceNumber,
+		raw: '\'build' + sliceNumber + '\''
+	    },
+	    kind: 'init',
+	    method: false,
+	    shorthand: false
+	};
+	objectExpression.properties.unshift(dirProperty);
+    } else {
+	dirProperty.value.value = 'build' + sliceNumber;
+	dirProperty.value.raw = '\'build' + sliceNumber + '\'';
+    }
+}
+
 function getTotalModules(objectExpression) {
     let modulesProperty =
 	objectExpression.properties.filter(p => p.key.name === 'modules')[0];
@@ -112,6 +139,8 @@ module.exports = async function adaptRequireConfig(requireConfigPath, numberOfSl
 	}
 
 	ensureSkipDirOptimize(topLevelConfigObject);
+
+	adaptDir(topLevelConfigObject, i);
 
 	adaptToModuleSlice(topLevelConfigObject, start, end);
 
