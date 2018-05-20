@@ -3,6 +3,8 @@ const path = require('path');
 const os = require('os');
 const adaptRequireConfig = require('./adapt_require_config');
 const runOptimizer = require('./run_optimizer');
+const diffRelativeFiles = require('./diff_relative_files');
+const directoryContent = require('./directory_content');
 
 module.exports = async function optimize(sourceDirectory, targetDirectory, requireConfigName) {
     let rjsPath = path.join(path.dirname(process.argv[1]), 'node_modules', '.bin', 'r.js');
@@ -46,5 +48,12 @@ module.exports = async function optimize(sourceDirectory, targetDirectory, requi
 
     copiedFiles.forEach(f => console.log('Copied over ' + f));
 
-    console.log('After optimization. Now we will have to copy over files excluded but necessary.');
+    let allFiles = await directoryContent(sourceDirectory);
+    allFiles = allFiles.map(f => path.relative(sourceDirectory, f));
+    let someFiles = copiedFiles.map(f => path.relative(targetDir, f));
+
+    let filesToUglify = diffRelativeFiles(allFiles, someFiles);
+
+    console.log('After optimization. Still ' + filesToUglify.length +
+		' files to uglify.');
 }
