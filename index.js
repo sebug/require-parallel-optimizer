@@ -26,15 +26,24 @@ async function optimize(sourceDirectory, targetDirectory, requireConfigName) {
 
     let adaptedRequireFiles = await adaptRequireConfig(path.join(mainInstance, requireConfigName), numberOfSlices);
 
-    let configFilePaths = [];
+    let configFiles = [];
     for (let i = 0; i < adaptedRequireFiles.length; i += 1) {
 	const adaptedPath = path.join(mainInstance, 'adapted_' + i +
 				      '_' + requireConfigName);
 	await fs.writeFile(adaptedPath, adaptedRequireFiles[i], 'utf8');
-	configFilePaths.push(adaptedPath);
+	configFiles.push({
+	    path: adaptedPath,
+	    slice: i
+	});
     }
 
-    const optimizationPromises = configFilePaths.map(fp => runOptimizer(rjsPath, fp));
+    let targetDir = path.join(mainInstance, 'build');
+    let targetDirExistsAlready = await fs.pathExists(targetDir);
+    if (targetDirExistsAlready) {
+	await fs.remove(targetDir);
+    }
+
+    const optimizationPromises = configFiles.map(f => runOptimizer(rjsPath, f.path, path.join(mainInstance, 'build' + f.slice), targetDir));
 
     await Promise.all(optimizationPromises);
 

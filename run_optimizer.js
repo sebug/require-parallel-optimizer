@@ -1,6 +1,8 @@
 const { spawn } = require('child_process');
+const path = require('path');
+const fs = require('fs-extra');
 
-module.exports = function runOptimizer(rJSPath, buildConfigFile) {
+module.exports = function runOptimizer(rJSPath, buildConfigFile, prefix, targetDir) {
     return new Promise((resolve, reject) => {
 	const rjs = spawn(rJSPath, ['-o', buildConfigFile]);
 	let output = '';
@@ -19,9 +21,21 @@ module.exports = function runOptimizer(rJSPath, buildConfigFile) {
 	    } else {
 		let reg = /^(.*\.js)\s+----------------/mg;
 		let result;
+		let copyInstructions = [];
 		while ((result = reg.exec(output)) !== null) {
-		    console.log('bundled file ' + result[1]);
+		    copyInstructions.push({
+			source: path.join(prefix, result[1]),
+			target: path.join(targetDir, result[1])
+		    });
 		}
+
+		copyInstructions.forEach((ci) => {
+		    let directory = path.dirname(ci.target);
+
+		    // Doing this one synchronous to avoid stepping on other processes' feet
+		    fs.ensureDirSync(directory);
+		    console.log('move ' + ci.source + ' to ' + ci.target);
+		});
 	    }
 	    resolve(buildConfigFile);
 	});
