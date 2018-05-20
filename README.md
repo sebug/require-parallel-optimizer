@@ -10,3 +10,6 @@ I want continuous delivery to make sense, and waiting half an hour for one singl
 
 The program takes the require.build.js file and creates multiple versions of it, each only containing a subset of modules. It then runs r.js on these files in parallel.
 
+After the modules have been bundled we have to minify the rest of the files. This is not yet integrated, but while I'm working on it:
+
+	node calculate_missing_files.js ../bundle-sources ../bundle-output/build | node uglify_explicit.js ../bundle-sources ../bundle-output/build

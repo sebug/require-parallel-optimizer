@@ -16,8 +16,13 @@ async function calculateMissingFiles(allFilesDirectory, someFilesDirectory) {
     someFiles = someFiles.map(f => path.relative(someFilesDirectory, f));
 
     let result = diffRelativeFiles(allFiles, someFiles);
-    
-    console.log(result);
+
+    // also, exclude prebuilt files. - this is a bit specific to our process
+    result = result.filter(f => f.indexOf('prebuilt') < 0);
+
+    result.forEach(function (f) {
+	console.log(f);
+    });
 }
 
 calculateMissingFiles(process.argv[2], process.argv[3]);
