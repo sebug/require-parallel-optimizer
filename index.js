@@ -45,7 +45,13 @@ async function optimize(sourceDirectory, targetDirectory, requireConfigName) {
 
     const optimizationPromises = configFiles.map(f => runOptimizer(rjsPath, f.path, path.join(mainInstance, 'build' + f.slice), targetDir));
 
-    await Promise.all(optimizationPromises);
+    let bundleFileGroups = await Promise.all(optimizationPromises);
+
+    // cue the array.smoosh
+    let copiedFiles = [];
+    bundleFileGroups.forEach(files => files.forEach(f => copiedFiles.push(f)));
+
+    copiedFiles.forEach(f => console.log('Copied over ' + f));
 
     console.log('After optimization. Now we will have to copy over files excluded but necessary.');
 }

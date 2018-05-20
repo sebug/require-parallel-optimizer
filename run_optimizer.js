@@ -29,15 +29,17 @@ module.exports = function runOptimizer(rJSPath, buildConfigFile, prefix, targetD
 		    });
 		}
 
-		copyInstructions.forEach((ci) => {
+		let copiedFiles = copyInstructions.map((ci) => {
 		    let directory = path.dirname(ci.target);
 
 		    // Doing this one synchronous to avoid stepping on other processes' feet
 		    fs.ensureDirSync(directory);
-		    console.log('move ' + ci.source + ' to ' + ci.target);
+		    fs.copySync(ci.source, ci.target);
+
+		    return ci.target;
 		});
+		resolve(copiedFiles);
 	    }
-	    resolve(buildConfigFile);
 	});
     });
 }
