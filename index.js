@@ -6,30 +6,9 @@ if (process.argv.length < 5) {
 
 const fs = require('fs-extra');
 const path = require('path');
-const { spawn } = require('child_process');
 const os = require('os');
 const adaptRequireConfig = require('./adapt_require_config');
-
-function runOptimizer(rJSPath, buildConfigFile) {
-    return new Promise((resolve, reject) => {
-	const rjs = spawn(rJSPath, ['-o', buildConfigFile]);
-	let output = '';
-	let error = '';
-	rjs.stdout.on('data', (data) => {
-	    output += data;
-	});
-	rjs.stderr.on('data', (data) => {
-	    error += data;
-	});
-	rjs.on('close', (code) => {
-	    console.log(error);
-	    console.log(output);
-	    console.log(rJSPath + ' -o ' + buildConfigFile +
-			' exited with code ' + code);
-	    resolve(buildConfigFile);
-	});
-    });
-}
+const runOptimizer = require('./run_optimizer');
 
 async function optimize(sourceDirectory, targetDirectory, requireConfigName) {
     let rjsPath = path.join(path.dirname(process.argv[1]), 'node_modules', '.bin', 'r.js');
