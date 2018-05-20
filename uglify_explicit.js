@@ -34,21 +34,37 @@ async function processFiles(fromDirectory, toDirectory, files) {
 	    if (s.isDirectory()) {
 		return true;
 	    } else {
-		return fs.readFile(sourceFile, 'utf8').then((content) => {
-		    let uglified = UglifyJS.minify(content);
-		    contents.push({
-			sourceFile: sourceFile,
-			targetFile: targetFile
-		    });
-
-		    let dirname = path.dirname(targetFile);
-		    fs.ensureDirSync(dirname);
-
-		    return fs.writeFile(targetFile, uglified.code, 'utf8')
-			.then(function () {
-			    return true;
+		if (sourceFile.indexOf('.js') >= 0) {
+		    return fs.readFile(sourceFile, 'utf8').then((content) => {
+			let targetContent;
+			if (sourceFile.indexOf('prebuilt') < 0) {
+			    // avoid re-minifying prebuilt items
+			    targetContent = UglifyJS.minify(content);
+			} else {
+			    console.log('just copying over ' + sourceFile);
+			    targetContent = {
+				code: content
+			    };
+			}
+			contents.push({
+			    sourceFile: sourceFile,
+			    targetFile: targetFile
 			});
-		});
+
+			let dirname = path.dirname(targetFile);
+			fs.ensureDirSync(dirname);
+
+			return fs.writeFile(targetFile, targetContent.code, 'utf8')
+			    .then(function () {
+				return true;
+			    });
+		    });
+		} else {
+		    console.log('Just copying over ' + sourceFile);
+		    return fs.copyFile(sourceFile, targetFile).then(function () {
+			return true;
+		    });
+		}
 	    }
 	});
     });
