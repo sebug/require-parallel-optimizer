@@ -5,6 +5,8 @@ if (process.argv.length < 4) {
 }
 
 const path = require('path');
+const fs = require('fs-extra');
+const UglifyJS = require('uglify-js');
 
 process.stdin.setEncoding('utf8');
 
@@ -22,12 +24,34 @@ process.stdin.on('end', () => {
     processFiles(process.argv[2], process.argv[3], fileArr);
 });
 
-function processFiles(fromDirectory, toDirectory, files) {
-    console.log('processing files');
-    files.forEach(f => {
+async function processFiles(fromDirectory, toDirectory, files) {
+    let contents = [];
+    let fileContentPromises = files.map(f => {
 	let sourceFile = path.join(fromDirectory, f);
 	let targetFile = path.join(toDirectory, f);
 
-	console.log(sourceFile + ' -> ' + targetFile);
+	return fs.stat(sourceFile).then(s => {
+	    if (s.isDirectory()) {
+		return true;
+	    } else {
+		return fs.readFile(sourceFile, 'utf8').then((content) => {
+		    let uglified = UglifyJS.minify(content);
+		    contents.push({
+			sourceFile: sourceFile,
+			targetFile: targetFile
+		    });
+
+		    let dirname = path.dirname(targetFile);
+		    fs.ensureDirSync(dirname);
+
+		    return fs.writeFile(targetFile, uglified.code, 'utf8')
+			.then(function () {
+			    return true;
+			});
+		});
+	    }
+	});
     });
+
+    await Promise.all(fileContentPromises);
 }
