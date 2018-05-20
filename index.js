@@ -12,23 +12,22 @@ const runOptimizer = require('./run_optimizer');
 
 async function optimize(sourceDirectory, targetDirectory, requireConfigName) {
     let rjsPath = path.join(path.dirname(process.argv[1]), 'node_modules', '.bin', 'r.js');
-    const mainInstance = path.join(targetDirectory, 'main');
 
-    let existsAlready = await fs.pathExists(mainInstance);
+    let existsAlready = await fs.pathExists(targetDirectory);
 
     if (existsAlready) {
-	await fs.remove(mainInstance);
+	await fs.remove(targetDirectory);
     }
     
-    await fs.copy(sourceDirectory, mainInstance);
+    await fs.copy(sourceDirectory, targetDirectory);
 
     let numberOfSlices = os.cpus().length;
 
-    let adaptedRequireFiles = await adaptRequireConfig(path.join(mainInstance, requireConfigName), numberOfSlices);
+    let adaptedRequireFiles = await adaptRequireConfig(path.join(targetDirectory, requireConfigName), numberOfSlices);
 
     let configFiles = [];
     for (let i = 0; i < adaptedRequireFiles.length; i += 1) {
-	const adaptedPath = path.join(mainInstance, 'adapted_' + i +
+	const adaptedPath = path.join(targetDirectory, 'adapted_' + i +
 				      '_' + requireConfigName);
 	await fs.writeFile(adaptedPath, adaptedRequireFiles[i], 'utf8');
 	configFiles.push({
@@ -37,13 +36,13 @@ async function optimize(sourceDirectory, targetDirectory, requireConfigName) {
 	});
     }
 
-    let targetDir = path.join(mainInstance, 'build');
+    let targetDir = path.join(targetDirectory, 'build');
     let targetDirExistsAlready = await fs.pathExists(targetDir);
     if (targetDirExistsAlready) {
 	await fs.remove(targetDir);
     }
 
-    const optimizationPromises = configFiles.map(f => runOptimizer(rjsPath, f.path, path.join(mainInstance, 'build' + f.slice), targetDir));
+    const optimizationPromises = configFiles.map(f => runOptimizer(rjsPath, f.path, path.join(targetDirectory, 'build' + f.slice), targetDir));
 
     let bundleFileGroups = await Promise.all(optimizationPromises);
 
