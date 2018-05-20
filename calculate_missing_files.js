@@ -5,22 +5,17 @@ if (process.argv.length < 4) {
 }
 
 const directoryContent = require('./directory_content');
+const path = require('path');
+const diffRelativeFiles = require('./diff_relative_files');
 
 async function calculateMissingFiles(allFilesDirectory, someFilesDirectory) {
     // First, list the files in the allFilesDirectory
     let allFiles = await directoryContent(allFilesDirectory);
+    allFiles = allFiles.map(f => path.relative(allFilesDirectory, f));
     let someFiles = await directoryContent(someFilesDirectory);
-    let someFilesPathAltered = someFiles.map((f) => f.replace(someFilesDirectory, allFilesDirectory));
-    let existingDict = {};
-    someFilesPathAltered.forEach((f) => {
-	existingDict[f] = true;
-    });
-    let result = [];
-    allFiles.forEach(f => {
-	if (!existingDict[f]) {
-	    result.push(f);
-	}
-    });
+    someFiles = someFiles.map(f => path.relative(someFilesDirectory, f));
+
+    let result = diffRelativeFiles(allFiles, someFiles);
     
     console.log(result);
 }
