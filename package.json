@@ -1,7 +1,7 @@
 {
-  "name": "require-parallel-optimizer",
+  "name": "amd-parallel-optimizer",
   "version": "0.0.1",
-  "description": "Optimizes a lot of RequireJS bundles in parallel.",
+  "description": "Optimizes a lot of AMD bundles in parallel using r.js.",
   "main": "index.js",
   "repository": "https://github.com/sebug/require-parallel-optimizer.git",
   "author": "Sebastian Gfeller",
