@@ -8,7 +8,7 @@ const directoryContent = require('./directory_content');
 const runUglifyParallel = require('./run_uglify_parallel');
 
 module.exports = async function optimize(sourceDirectory, targetDirectory, requireConfigName, rjsPath) {
-    rjsPath = rjsPath || path.join(path.dirname(process.argv[1]), 'node_modules', '.bin', 'r.js');
+    rjsPath = rjsPath || path.join(path.dirname(process.argv[1]), 'node_modules', 'requirejs', 'bin', 'r.js');
 
     let existsAlready = await fs.pathExists(targetDirectory);
 
