@@ -37,7 +37,8 @@ async function processFiles(fromDirectory, toDirectory, files) {
 		if (sourceFile.indexOf('.js') >= 0) {
 		    return fs.readFile(sourceFile, 'utf8').then((content) => {
 			let targetContent;
-			if (sourceFile.indexOf('prebuilt') < 0) {
+			if (sourceFile.indexOf('prebuilt') < 0 && sourceFile.indexOf('devextreme') < 0 &&
+			    sourceFile.indexOf('require') < 0 && sourceFile.indexOf('.min') < 0) {
 			    // avoid re-minifying prebuilt items
 			    targetContent = UglifyJS.minify(content);
 			} else {
