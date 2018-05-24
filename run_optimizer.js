@@ -4,7 +4,7 @@ const fs = require('fs-extra');
 
 module.exports = function runOptimizer(rJSPath, buildConfigFile, prefix, targetDir) {
     return new Promise((resolve, reject) => {
-	const rjs = spawn(rJSPath, ['-o', buildConfigFile]);
+	const rjs = spawn('node', [rJSPath, '-o', buildConfigFile]);
 	let output = '';
 	let error = '';
 	rjs.stdout.on('data', (data) => {
