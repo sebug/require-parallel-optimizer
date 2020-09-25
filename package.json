@@ -12,6 +12,7 @@
     "esprima": "^4.0.0",
     "fs-extra": "^6.0.1",
     "requirejs": "^2.3.5",
+    "terser": "^5.3.2",
     "uglify-js": "^3.3.25"
   }
 }
