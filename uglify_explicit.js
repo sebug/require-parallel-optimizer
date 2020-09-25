@@ -6,7 +6,7 @@ if (process.argv.length < 4) {
 
 const path = require('path');
 const fs = require('fs-extra');
-const UglifyJS = require('uglify-js');
+const UglifyJS = require('terser');
 
 process.stdin.setEncoding('utf8');
 
