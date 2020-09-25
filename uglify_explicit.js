@@ -7,6 +7,8 @@ if (process.argv.length < 4) {
 const path = require('path');
 const fs = require('fs-extra');
 const UglifyJS = require('terser');
+const deasync = require('deasync');
+const minify = deasync(UglifyJS.minify);
 
 process.stdin.setEncoding('utf8');
 
@@ -40,7 +42,7 @@ async function processFiles(fromDirectory, toDirectory, files) {
 			if (sourceFile.indexOf('prebuilt') < 0 && sourceFile.indexOf('devextreme') < 0 &&
 			    sourceFile.indexOf('require') < 0 && sourceFile.indexOf('.min') < 0) {
 			    // avoid re-minifying prebuilt items
-			    targetContent = UglifyJS.minify(content);
+			    targetContent = minify(content);
 			} else {
 			    console.log('just copying over ' + sourceFile);
 			    targetContent = {

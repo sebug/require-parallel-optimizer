@@ -8,6 +8,7 @@
   "license": "Apache-2.0",
   "private": false,
   "dependencies": {
+    "deasync": "^0.1.20",
     "escodegen": "^1.9.1",
     "esprima": "^4.0.0",
     "fs-extra": "^6.0.1",
