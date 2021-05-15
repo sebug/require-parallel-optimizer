@@ -1,1 +1,3 @@
 node_modules
+tests/jobby-job
+.DS_Store
