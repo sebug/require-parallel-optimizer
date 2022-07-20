@@ -2,181 +2,192 @@
 # yarn lockfile v1
 
 
-"bindings@^1.5.0":
-  "integrity" "sha512-p2q/t/mhvuOj/UeLlV6566GD/guowlr0hHxClI0W9m7MWYkL1F0hLo+0Aexs9HSPCtR1SXQ0TD3MMKrXZajbiQ=="
-  "resolved" "https://registry.npmjs.org/bindings/-/bindings-1.5.0.tgz"
-  "version" "1.5.0"
+"@jridgewell/gen-mapping@^0.3.0":
+  version "0.3.2"
+  resolved "https://registry.yarnpkg.com/@jridgewell/gen-mapping/-/gen-mapping-0.3.2.tgz#c1aedc61e853f2bb9f5dfe6d4442d3b565b253b9"
   dependencies:
-    "file-uri-to-path" "1.0.0"
+    "@jridgewell/set-array" "^1.0.1"
+    "@jridgewell/sourcemap-codec" "^1.4.10"
+    "@jridgewell/trace-mapping" "^0.3.9"
 
-"buffer-from@^1.0.0":
-  "integrity" "sha512-MQcXEUbCKtEo7bhqEs6560Hyd4XaovZlO/k9V3hjVUF/zwW7KBVdSK4gIt/bzwS9MbR5qob+F5jusZsb0YQK2A=="
-  "resolved" "https://registry.npmjs.org/buffer-from/-/buffer-from-1.1.1.tgz"
-  "version" "1.1.1"
+"@jridgewell/resolve-uri@^3.0.3":
+  version "3.1.0"
+  resolved "https://registry.yarnpkg.com/@jridgewell/resolve-uri/-/resolve-uri-3.1.0.tgz#2203b118c157721addfe69d47b70465463066d78"
 
-"commander@^2.20.0":
-  "integrity" "sha512-GpVkmM8vF2vQUkj2LvZmD35JxeJOLCwJ9cUkugyk2nuhbv3+mJvpLYYt+0+USMxE+oj+ey/lJEnhZw75x/OMcQ=="
-  "resolved" "https://registry.npmjs.org/commander/-/commander-2.20.3.tgz"
-  "version" "2.20.3"
+"@jridgewell/set-array@^1.0.1":
+  version "1.1.2"
+  resolved "https://registry.yarnpkg.com/@jridgewell/set-array/-/set-array-1.1.2.tgz#7c6cf998d6d20b914c0a55a91ae928ff25965e72"
 
-"commander@~2.15.0":
-  "integrity" "sha512-VlfT9F3V0v+jr4yxPc5gg9s62/fIVWsd2Bk2iD435um1NlGMYdVCq+MjcXnhYq2icNOizHr1kK+5TI6H0Hy0ag=="
-  "resolved" "https://registry.npmjs.org/commander/-/commander-2.15.1.tgz"
-  "version" "2.15.1"
-
-"deasync@^0.1.20":
-  "integrity" "sha512-E1GI7jMI57hL30OX6Ht/hfQU8DO4AuB9m72WFm4c38GNbUD4Q03//XZaOIHZiY+H1xUaomcot5yk2q/qIZQkGQ=="
-  "resolved" "https://registry.npmjs.org/deasync/-/deasync-0.1.20.tgz"
-  "version" "0.1.20"
+"@jridgewell/source-map@^0.3.2":
+  version "0.3.2"
+  resolved "https://registry.yarnpkg.com/@jridgewell/source-map/-/source-map-0.3.2.tgz#f45351aaed4527a298512ec72f81040c998580fb"
   dependencies:
-    "bindings" "^1.5.0"
-    "node-addon-api" "^1.7.1"
+    "@jridgewell/gen-mapping" "^0.3.0"
+    "@jridgewell/trace-mapping" "^0.3.9"
 
-"deep-is@~0.1.3":
-  "integrity" "sha1-s2nW+128E+7PUk+RsHD+7cNXzzQ="
-  "resolved" "https://registry.npmjs.org/deep-is/-/deep-is-0.1.3.tgz"
-  "version" "0.1.3"
+"@jridgewell/sourcemap-codec@^1.4.10":
+  version "1.4.14"
+  resolved "https://registry.yarnpkg.com/@jridgewell/sourcemap-codec/-/sourcemap-codec-1.4.14.tgz#add4c98d341472a289190b424efbdb096991bb24"
 
-"escodegen@^1.9.1":
-  "integrity" "sha512-6hTjO1NAWkHnDk3OqQ4YrCuwwmGHL9S3nPlzBOUG/R44rda3wLNrfvQ5fkSGjyhHFKM7ALPKcKGrwvCLe0lC7Q=="
-  "resolved" "https://registry.npmjs.org/escodegen/-/escodegen-1.9.1.tgz"
-  "version" "1.9.1"
+"@jridgewell/trace-mapping@^0.3.9":
+  version "0.3.14"
+  resolved "https://registry.yarnpkg.com/@jridgewell/trace-mapping/-/trace-mapping-0.3.14.tgz#b231a081d8f66796e475ad588a1ef473112701ed"
   dependencies:
-    "esprima" "^3.1.3"
-    "estraverse" "^4.2.0"
-    "esutils" "^2.0.2"
-    "optionator" "^0.8.1"
-    "source-map" "~0.6.1"
+    "@jridgewell/resolve-uri" "^3.0.3"
+    "@jridgewell/sourcemap-codec" "^1.4.10"
 
-"esprima@^3.1.3":
-  "integrity" "sha1-/cpRzuYTOJXjyI1TXOSdv/YqRjM="
-  "resolved" "https://registry.npmjs.org/esprima/-/esprima-3.1.3.tgz"
-  "version" "3.1.3"
+acorn@^8.5.0:
+  version "8.7.1"
+  resolved "https://registry.yarnpkg.com/acorn/-/acorn-8.7.1.tgz#0197122c843d1bf6d0a5e83220a788f278f63c30"
 
-"esprima@^4.0.0":
-  "integrity" "sha512-oftTcaMu/EGrEIu904mWteKIv8vMuOgGYo7EhVJJN00R/EED9DCua/xxHRdYnKtcECzVg7xOWhflvJMnqcFZjw=="
-  "resolved" "https://registry.npmjs.org/esprima/-/esprima-4.0.0.tgz"
-  "version" "4.0.0"
-
-"estraverse@^4.2.0":
-  "integrity" "sha1-De4/7TH81GlhjOc0IJn8GvoL2xM="
-  "resolved" "https://registry.npmjs.org/estraverse/-/estraverse-4.2.0.tgz"
-  "version" "4.2.0"
-
-"esutils@^2.0.2":
-  "integrity" "sha1-Cr9PHKpbyx96nYrMbepPqqBLrJs="
-  "resolved" "https://registry.npmjs.org/esutils/-/esutils-2.0.2.tgz"
-  "version" "2.0.2"
-
-"fast-levenshtein@~2.0.4":
-  "integrity" "sha1-PYpcZog6FqMMqGQ+hR8Zuqd5eRc="
-  "resolved" "https://registry.npmjs.org/fast-levenshtein/-/fast-levenshtein-2.0.6.tgz"
-  "version" "2.0.6"
-
-"file-uri-to-path@1.0.0":
-  "integrity" "sha512-0Zt+s3L7Vf1biwWZ29aARiVYLx7iMGnEUl9x33fbB/j3jR81u/O2LbqK+Bm1CDSNDKVtJ/YjwY7TUd5SkeLQLw=="
-  "resolved" "https://registry.npmjs.org/file-uri-to-path/-/file-uri-to-path-1.0.0.tgz"
-  "version" "1.0.0"
-
-"fs-extra@^6.0.1":
-  "integrity" "sha512-GnyIkKhhzXZUWFCaJzvyDLEEgDkPfb4/TPvJCJVuS8MWZgoSsErf++QpiAlDnKFcqhRlm+tIOcencCjyJE6ZCA=="
-  "resolved" "https://registry.npmjs.org/fs-extra/-/fs-extra-6.0.1.tgz"
-  "version" "6.0.1"
+bindings@^1.5.0:
+  version "1.5.0"
+  resolved "https://registry.npmjs.org/bindings/-/bindings-1.5.0.tgz"
   dependencies:
-    "graceful-fs" "^4.1.2"
-    "jsonfile" "^4.0.0"
-    "universalify" "^0.1.0"
+    file-uri-to-path "1.0.0"
 
-"graceful-fs@^4.1.2", "graceful-fs@^4.1.6":
-  "integrity" "sha1-Dovf5NHduIVNZOBOp8AOKgJuVlg="
-  "resolved" "https://registry.npmjs.org/graceful-fs/-/graceful-fs-4.1.11.tgz"
-  "version" "4.1.11"
+buffer-from@^1.0.0:
+  version "1.1.1"
+  resolved "https://registry.npmjs.org/buffer-from/-/buffer-from-1.1.1.tgz"
 
-"jsonfile@^4.0.0":
-  "integrity" "sha1-h3Gq4HmbZAdrdmQPygWPnBDjPss="
-  "resolved" "https://registry.npmjs.org/jsonfile/-/jsonfile-4.0.0.tgz"
-  "version" "4.0.0"
+commander@^2.20.0:
+  version "2.20.3"
+  resolved "https://registry.npmjs.org/commander/-/commander-2.20.3.tgz"
+
+commander@~2.15.0:
+  version "2.15.1"
+  resolved "https://registry.npmjs.org/commander/-/commander-2.15.1.tgz"
+
+deasync@^0.1.20:
+  version "0.1.20"
+  resolved "https://registry.npmjs.org/deasync/-/deasync-0.1.20.tgz"
   dependencies:
-    "graceful-fs" "^4.1.6"
+    bindings "^1.5.0"
+    node-addon-api "^1.7.1"
 
-"levn@~0.3.0":
-  "integrity" "sha1-OwmSTt+fCDwEkP3UwLxEIeBHZO4="
-  "resolved" "https://registry.npmjs.org/levn/-/levn-0.3.0.tgz"
-  "version" "0.3.0"
+deep-is@~0.1.3:
+  version "0.1.3"
+  resolved "https://registry.npmjs.org/deep-is/-/deep-is-0.1.3.tgz"
+
+escodegen@^1.9.1:
+  version "1.9.1"
+  resolved "https://registry.npmjs.org/escodegen/-/escodegen-1.9.1.tgz"
   dependencies:
-    "prelude-ls" "~1.1.2"
-    "type-check" "~0.3.2"
+    esprima "^3.1.3"
+    estraverse "^4.2.0"
+    esutils "^2.0.2"
+    optionator "^0.8.1"
+    source-map "~0.6.1"
 
-"node-addon-api@^1.7.1":
-  "integrity" "sha512-ibPK3iA+vaY1eEjESkQkM0BbCqFOaZMiXRTtdB0u7b4djtY6JnsjvPdUHVMg6xQt3B8fpTTWHI9A+ADjM9frzg=="
-  "resolved" "https://registry.npmjs.org/node-addon-api/-/node-addon-api-1.7.2.tgz"
-  "version" "1.7.2"
+esprima@^3.1.3:
+  version "3.1.3"
+  resolved "https://registry.npmjs.org/esprima/-/esprima-3.1.3.tgz"
 
-"optionator@^0.8.1":
-  "integrity" "sha1-NkxeQJ0/TWMB1sC0wFu6UBgK62Q="
-  "resolved" "https://registry.npmjs.org/optionator/-/optionator-0.8.2.tgz"
-  "version" "0.8.2"
+esprima@^4.0.0:
+  version "4.0.0"
+  resolved "https://registry.npmjs.org/esprima/-/esprima-4.0.0.tgz"
+
+estraverse@^4.2.0:
+  version "4.2.0"
+  resolved "https://registry.npmjs.org/estraverse/-/estraverse-4.2.0.tgz"
+
+esutils@^2.0.2:
+  version "2.0.2"
+  resolved "https://registry.npmjs.org/esutils/-/esutils-2.0.2.tgz"
+
+fast-levenshtein@~2.0.4:
+  version "2.0.6"
+  resolved "https://registry.npmjs.org/fast-levenshtein/-/fast-levenshtein-2.0.6.tgz"
+
+file-uri-to-path@1.0.0:
+  version "1.0.0"
+  resolved "https://registry.npmjs.org/file-uri-to-path/-/file-uri-to-path-1.0.0.tgz"
+
+fs-extra@^6.0.1:
+  version "6.0.1"
+  resolved "https://registry.npmjs.org/fs-extra/-/fs-extra-6.0.1.tgz"
   dependencies:
-    "deep-is" "~0.1.3"
-    "fast-levenshtein" "~2.0.4"
-    "levn" "~0.3.0"
-    "prelude-ls" "~1.1.2"
-    "type-check" "~0.3.2"
-    "wordwrap" "~1.0.0"
+    graceful-fs "^4.1.2"
+    jsonfile "^4.0.0"
+    universalify "^0.1.0"
 
-"prelude-ls@~1.1.2":
-  "integrity" "sha1-IZMqVJ9eUv/ZqCf1cOBL5iqX2lQ="
-  "resolved" "https://registry.npmjs.org/prelude-ls/-/prelude-ls-1.1.2.tgz"
-  "version" "1.1.2"
+graceful-fs@^4.1.2, graceful-fs@^4.1.6:
+  version "4.1.11"
+  resolved "https://registry.npmjs.org/graceful-fs/-/graceful-fs-4.1.11.tgz"
 
-"requirejs@^2.3.5":
-  "integrity" "sha512-svnO+aNcR/an9Dpi44C7KSAy5fFGLtmPbaaCeQaklUz8BQhS64tWWIIlvEA5jrWICzlO/X9KSzSeXFnZdBu8nw=="
-  "resolved" "https://registry.npmjs.org/requirejs/-/requirejs-2.3.5.tgz"
-  "version" "2.3.5"
-
-"source-map-support@~0.5.12":
-  "integrity" "sha512-Wonm7zOCIJzBGQdB+thsPar0kYuCIzYvxZwlBa87yi/Mdjv7Tip2cyVbLj5o0cFPN4EVkuTwb3GDDyUx2DGnGw=="
-  "resolved" "https://registry.npmjs.org/source-map-support/-/source-map-support-0.5.19.tgz"
-  "version" "0.5.19"
+jsonfile@^4.0.0:
+  version "4.0.0"
+  resolved "https://registry.npmjs.org/jsonfile/-/jsonfile-4.0.0.tgz"
   dependencies:
-    "buffer-from" "^1.0.0"
-    "source-map" "^0.6.0"
+    graceful-fs "^4.1.6"
 
-"source-map@^0.6.0", "source-map@~0.6.1":
-  "integrity" "sha512-UjgapumWlbMhkBgzT7Ykc5YXUT46F0iKu8SGXq0bcwP5dz/h0Plj6enJqjz1Zbq2l5WaqYnrVbwWOWMyF3F47g=="
-  "resolved" "https://registry.npmjs.org/source-map/-/source-map-0.6.1.tgz"
-  "version" "0.6.1"
-
-"terser@^5.3.2":
-  "integrity" "sha512-H67sydwBz5jCUA32ZRL319ULu+Su1cAoZnnc+lXnenGRYWyLE3Scgkt8mNoAsMx0h5kdo758zdoS0LG9rYZXDQ=="
-  "resolved" "https://registry.npmjs.org/terser/-/terser-5.3.2.tgz"
-  "version" "5.3.2"
+levn@~0.3.0:
+  version "0.3.0"
+  resolved "https://registry.npmjs.org/levn/-/levn-0.3.0.tgz"
   dependencies:
-    "commander" "^2.20.0"
-    "source-map" "~0.6.1"
-    "source-map-support" "~0.5.12"
+    prelude-ls "~1.1.2"
+    type-check "~0.3.2"
 
-"type-check@~0.3.2":
-  "integrity" "sha1-WITKtRLPHTVeP7eE8wgEsrUg23I="
-  "resolved" "https://registry.npmjs.org/type-check/-/type-check-0.3.2.tgz"
-  "version" "0.3.2"
+node-addon-api@^1.7.1:
+  version "1.7.2"
+  resolved "https://registry.npmjs.org/node-addon-api/-/node-addon-api-1.7.2.tgz"
+
+optionator@^0.8.1:
+  version "0.8.2"
+  resolved "https://registry.npmjs.org/optionator/-/optionator-0.8.2.tgz"
   dependencies:
-    "prelude-ls" "~1.1.2"
+    deep-is "~0.1.3"
+    fast-levenshtein "~2.0.4"
+    levn "~0.3.0"
+    prelude-ls "~1.1.2"
+    type-check "~0.3.2"
+    wordwrap "~1.0.0"
 
-"uglify-js@^3.3.25":
-  "integrity" "sha512-hobogryjDV36VrLK3Y69ou4REyrTApzUblVFmdQOYRe8cYaSmFJXMb4dR9McdvYDSbeNdzUgYr2YVukJaErJcA=="
-  "resolved" "https://registry.npmjs.org/uglify-js/-/uglify-js-3.3.25.tgz"
-  "version" "3.3.25"
+prelude-ls@~1.1.2:
+  version "1.1.2"
+  resolved "https://registry.npmjs.org/prelude-ls/-/prelude-ls-1.1.2.tgz"
+
+requirejs@^2.3.5:
+  version "2.3.5"
+  resolved "https://registry.npmjs.org/requirejs/-/requirejs-2.3.5.tgz"
+
+source-map-support@~0.5.20:
+  version "0.5.21"
+  resolved "https://registry.yarnpkg.com/source-map-support/-/source-map-support-0.5.21.tgz#04fe7c7f9e1ed2d662233c28cb2b35b9f63f6e4f"
   dependencies:
-    "commander" "~2.15.0"
-    "source-map" "~0.6.1"
+    buffer-from "^1.0.0"
+    source-map "^0.6.0"
 
-"universalify@^0.1.0":
-  "integrity" "sha1-+nG63UQ3r0wUiEHjs7Fl+enlkLc="
-  "resolved" "https://registry.npmjs.org/universalify/-/universalify-0.1.1.tgz"
-  "version" "0.1.1"
+source-map@^0.6.0, source-map@~0.6.1:
+  version "0.6.1"
+  resolved "https://registry.npmjs.org/source-map/-/source-map-0.6.1.tgz"
 
-"wordwrap@~1.0.0":
-  "integrity" "sha1-J1hIEIkUVqQXHI0CJkQa3pDLyus="
-  "resolved" "https://registry.npmjs.org/wordwrap/-/wordwrap-1.0.0.tgz"
-  "version" "1.0.0"
+terser@^5.3.2:
+  version "5.14.2"
+  resolved "https://registry.yarnpkg.com/terser/-/terser-5.14.2.tgz#9ac9f22b06994d736174f4091aa368db896f1c10"
+  dependencies:
+    "@jridgewell/source-map" "^0.3.2"
+    acorn "^8.5.0"
+    commander "^2.20.0"
+    source-map-support "~0.5.20"
+
+type-check@~0.3.2:
+  version "0.3.2"
+  resolved "https://registry.npmjs.org/type-check/-/type-check-0.3.2.tgz"
+  dependencies:
+    prelude-ls "~1.1.2"
+
+uglify-js@^3.3.25:
+  version "3.3.25"
+  resolved "https://registry.npmjs.org/uglify-js/-/uglify-js-3.3.25.tgz"
+  dependencies:
+    commander "~2.15.0"
+    source-map "~0.6.1"
+
+universalify@^0.1.0:
+  version "0.1.1"
+  resolved "https://registry.npmjs.org/universalify/-/universalify-0.1.1.tgz"
+
+wordwrap@~1.0.0:
+  version "1.0.0"
+  resolved "https://registry.npmjs.org/wordwrap/-/wordwrap-1.0.0.tgz"
